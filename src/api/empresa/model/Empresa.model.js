@@ -13,9 +13,13 @@ Empresa.init({
   rut:{
     type: DataTypes.INTEGER,
   },
+  activo: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
+  }
 }, {
   sequelize,
-  modelName: 'Empresa',// si no deseas que Sequelize maneje automáticamente las columnas createdAt y updatedAt
+  modelName: 'Empresa'
 });
-
 module.exports = Empresa;
+

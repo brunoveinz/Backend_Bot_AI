@@ -2,6 +2,7 @@ const express = require('express');
 const conexion = require('../database/database.js');
 const EmpleadosRoute = require('./api/empleado/routes/Empleado.route.js');
 const empresaRoute = require("./api/empresa/routes/Empresa.route.js");
+require('./api/associatios.js');
 
 const app = express();
 

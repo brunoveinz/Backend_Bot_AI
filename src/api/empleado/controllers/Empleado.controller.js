@@ -34,7 +34,40 @@ const getEmpleadoByTelefono = async (req, res) => {
 };
 
 
+const updateEmpleado = async (req, res) => {
+  const { nombre, empresa, telefono } = req.body;
+  
+  const empleado = await Empleado.findByPk(req.params.id);
+  
+  if(!empleado){
+      return res.status(404).json({message: "Empleado no encontrado"});
+  }
+
+  empleado.nombre = nombre;
+  empleado.empresa = empresa;
+  empleado.telefono = telefono;
+
+  await empleado.save();
+
+  res.json(empleado);
+};
+
+const deleteEmpleado = async (req, res) => {
+  const empleado = await Empleado.findByPk(req.params.id);
+  
+  if(!empleado){
+      return res.status(404).json({message: "Empleado no encontrado"});
+  }
+
+  await empleado.destroy();
+
+  res.json({message: "Empleado eliminado"});
+};
+
+
 module.exports = {
+  updateEmpleado,
+  deleteEmpleado,
   getEmpleados,
   getEmpleadoById,
   createEmpleado,

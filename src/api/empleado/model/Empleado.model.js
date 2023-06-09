@@ -13,10 +13,15 @@ Empleado.init({
   telefono: {
     type: DataTypes.BIGINT(25),
     unique: true
+  },
+  activo: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
   }
 }, {
   sequelize,
   modelName: 'Empleado'
 });
+
 
 module.exports = Empleado;
