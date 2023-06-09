@@ -1,0 +1,22 @@
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const sequelize = require('../../../../database/database.js');
+
+class Empleado extends Model {}
+
+Empleado.init({
+  nombre: {
+    type: DataTypes.STRING,
+  },
+  empresa: {
+    type: DataTypes.STRING,
+  },
+  telefono: {
+    type: DataTypes.BIGINT(25),
+    unique: true
+  }
+}, {
+  sequelize,
+  modelName: 'Empleado'
+});
+
+module.exports = Empleado;
