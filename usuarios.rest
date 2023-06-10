@@ -2,15 +2,6 @@
 
 
 
-POST http://localhost:3001/empleados/
-Content-Type: application/json
-
-{
-    "nombre": "chatbot",
-    "empresa": "Limbik tech ai",
-    "telefono": "56965931977"
-}
-
-
-
+GET  http://localhost:3001/empresas/
+Authorization: Bearer <Token>
 

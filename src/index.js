@@ -1,8 +1,9 @@
 const express = require('express');
 const conexion = require('../database/database.js');
-const EmpleadosRoute = require('./api/empleado/routes/Empleado.route.js');
-const empresaRoute = require("./api/empresa/routes/Empresa.route.js");
-require('./api/associatios.js');
+const EmpleadosRoute = require('./Routes/Empleado.route.js');
+const EmpresaRoute = require("./Routes/Empleado.route.js");
+require('./Controllers/associatios.js');
+
 
 const app = express();
 
@@ -10,7 +11,7 @@ const app = express();
 (async () => {
     try {
         await conexion.authenticate();
-        await conexion.sync({alter: true});
+        await conexion.sync({alter: true,});
         console.log("Conectados a la base de datos");
     } catch (error) {
         throw new Error(error);
@@ -25,7 +26,7 @@ app.use(express.json());
 
 //routes
 app.use('/empleados', EmpleadosRoute)
-
+app.use('/empresas', EmpresaRoute)
 
 //rama dos
 
