@@ -7,9 +7,6 @@ Empleado.init({
   nombre: {
     type: DataTypes.STRING,
   },
-  empresa: {
-    type: DataTypes.STRING,
-  },
   telefono: {
     type: DataTypes.BIGINT(25),
     unique: true

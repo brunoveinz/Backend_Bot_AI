@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const empresaController = require("../controllers/Empresa.controller.js");
+const empresaController = require("../Controllers/Empresa.controller.js");
 
 
 router.get('/',empresaController.getEmpresa);

@@ -10,14 +10,23 @@ const getEmpresaById = async (req, res) => {
     res.send(empresa);
 };
 
+//Arreglar controladores empresa
 const createEmpresa = async (req, res) => {
-    const {nombre, cantidadEmpleados,rut} = req.body;
+    const {nombre, cantidadEmpleados,rut,activo} = req.body;
 
-    res.json({
-        nombre: nombre,
-        cantidadEmpleados: cantidadEmpleados,
-        rut: rut
-    });
+    try {
+        const empresa = await Empresa.create({
+            nombre: nombre,
+            cantdadEmpleados: cantidadEmpleados,
+            rut: rut,
+            activo: activo
+        })
+        res.json(`empresa creada exitosamente ${empresa}`)
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({message: "Hubo un error al crear una empresa"})
+    }
 };
 
 const updateEmpresa = async (req, res) => {

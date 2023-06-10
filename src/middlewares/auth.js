@@ -5,7 +5,7 @@ require('dotenv').config();
 const router = express.Router();
 
 function generateToken(payload) {
-    return jwt.sign(payload, 'tu_clave_secreta');
+    return jwt.sign(payload, process.env.APIKEY);
 }
 
 router.post('/tokeniz', (req, res) => {
@@ -23,4 +23,23 @@ router.post('/tokeniz', (req, res) => {
 });
 
 
-module.exports = router;
+function verifyToken(req, res, next) {
+    const bearerHeader = req.headers['authorization'];
+    if (typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(' ');
+        const bearerToken = bearer[1];
+        jwt.verify(bearerToken, process.env.APIKEY, (err, data) => {
+            if (err) {
+                res.sendStatus(403);
+            } else {
+                req.userData = data;
+                next();
+            }
+        });
+    } else {
+        res.status(403).send("Token no Enviado"); // Enviar respuesta personalizada cuando no se envía un token.
+    }
+}
+
+
+module.exports = {router, verifyToken};

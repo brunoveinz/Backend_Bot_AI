@@ -2,10 +2,26 @@
 
 
 
-POST http://localhost:3001/a/tokeniz/ 
+
+
+POST http://localhost:3001/empleados
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODY0MzI2NTR9.emUnn3lH-AHYjPXe6Ncjg1WwhdPsAKAxSR7n45pFh3I
 
 {
-    "nombre": "bruno",
-    "password": "123"
+    "nombre": "Limbik",
+    "telefono": 56965931977,
+    "activo": true,
+    "EmpresaId": 1
 }
+
+
+
+# POST http://localhost:3001/a/tokeniz/ 
+# Content-Type: application/json
+
+# {
+#     "nombre": "bruno",
+#     "password": "123"
+# }
+

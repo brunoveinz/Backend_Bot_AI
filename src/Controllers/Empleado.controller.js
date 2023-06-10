@@ -1,4 +1,5 @@
 const Empleado = require('../models/Empleado.model');
+const Empresa = require('../models/Empresa.model'); // Requerir el modelo de Empresa
 
 const getEmpleados = async (req, res) => {
   const empleados = await Empleado.findAll();
@@ -11,16 +12,24 @@ const getEmpleadoById = async (req, res) => {
 };
 
 const createEmpleado = async (req, res) => {
-    const {nombre,empresa,telefono} = req.body;
+    const {nombre, EmpresaId, telefono,activo} = req.body; // Utiliza empresaId en lugar de empresa
 
     //validaciones
-    if (!nombre || !empresa || !telefono) {
+    if (!nombre || !EmpresaId || !telefono || !activo) {
       return res.status(400).json({
-        error: "uno o mas campos vacios",
+        error: "uno o más campos vacíos",
       });
     }
 
-    const empleado = await Empleado.create({nombre,empresa,telefono});
+    // Verificar si la empresa existe
+    const empresa = await Empresa.findByPk(EmpresaId);
+    if (!empresa) {
+      return res.status(404).json({
+        error: "Empresa no encontrada",
+      });
+    }
+
+    const empleado = await Empleado.create({nombre, EmpresaId: EmpresaId, telefono}); // Usar EmpresaId
     res.json(empleado);
 };
 
@@ -33,9 +42,8 @@ const getEmpleadoByTelefono = async (req, res) => {
   res.send(empleado);
 };
 
-
 const updateEmpleado = async (req, res) => {
-  const { nombre, empresa, telefono } = req.body;
+  const { nombre, empresaId, telefono } = req.body; // Usar empresaId
   
   const empleado = await Empleado.findByPk(req.params.id);
   
@@ -43,8 +51,16 @@ const updateEmpleado = async (req, res) => {
       return res.status(404).json({message: "Empleado no encontrado"});
   }
 
+  // Verificar si la empresa existe
+  const empresa = await Empresa.findByPk(empresaId);
+  if (!empresa) {
+    return res.status(404).json({
+      error: "Empresa no encontrada",
+    });
+  }
+
   empleado.nombre = nombre;
-  empleado.empresa = empresa;
+  empleado.EmpresaId = empresaId; // Usar EmpresaId
   empleado.telefono = telefono;
 
   await empleado.save();

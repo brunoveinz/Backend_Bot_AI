@@ -1,8 +1,8 @@
 const express = require('express');
 const conexion = require('./database/database.js');
 const EmpleadosRoute = require('./Routes/Empleado.route.js');
-const EmpresaRoute = require("./Routes/Empleado.route.js");
-const authRouter = require('./middlewares/auth.js'); // Asegúrate de actualizar esta ruta con la ruta correcta a tu archivo de autenticación
+const EmpresaRoute = require("./Routes/Empresa.route.js");
+const {router, verifyToken} = require('./middlewares/auth.js'); // Asegúrate de actualizar esta ruta con la ruta correcta a tu archivo de autenticación
 require('./Controllers/associatios.js');
 
 
@@ -12,7 +12,7 @@ const app = express();
 (async () => {
     try {
         await conexion.authenticate();
-        await conexion.sync({alter: true,});
+        await conexion.sync({alter: true});
         console.log("Conectados a la base de datos");
     } catch (error) {
         throw new Error(error);
@@ -23,10 +23,11 @@ const app = express();
 //Midleware
 app.use(express.json());
 
-
-
 //routes
-app.use('/a', authRouter);
+app.use('/a', router);
+// Midleware para ver si las peticiones tienen autorizacion
+app.use(verifyToken);
+
 app.use('/empleados', EmpleadosRoute)
 app.use('/empresas', EmpresaRoute)
 
