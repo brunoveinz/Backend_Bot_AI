@@ -1,7 +1,8 @@
 const express = require('express');
-const conexion = require('../database/database.js');
+const conexion = require('./database/database.js');
 const EmpleadosRoute = require('./Routes/Empleado.route.js');
 const EmpresaRoute = require("./Routes/Empleado.route.js");
+const authRouter = require('./middlewares/auth.js'); // Asegúrate de actualizar esta ruta con la ruta correcta a tu archivo de autenticación
 require('./Controllers/associatios.js');
 
 
@@ -25,6 +26,7 @@ app.use(express.json());
 
 
 //routes
+app.use('/a', authRouter);
 app.use('/empleados', EmpleadosRoute)
 app.use('/empresas', EmpresaRoute)
 
