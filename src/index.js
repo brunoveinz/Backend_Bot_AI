@@ -20,7 +20,7 @@ const app = express();
 })();
 
 
-//Midleware
+//Midlewaree
 app.use(express.json());
 
 //routes
