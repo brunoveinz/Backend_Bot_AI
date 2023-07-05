@@ -14,6 +14,10 @@ Empleado.init({
   activo: {
     type: DataTypes.BOOLEAN,
     defaultValue: true
+  },
+  primeraInteraccion: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
   }
 }, {
   sequelize,

@@ -6,6 +6,7 @@ router.get('/', empleadoController.getEmpleados);
 router.get('/:id', empleadoController.getEmpleadoById);
 router.post('/', empleadoController.createEmpleado);
 router.get('/telefono/:telefono', empleadoController.getEmpleadoByTelefono);
+router.put('/:id', empleadoController.updateEmpleado);
 
 
 // Aquí puedes añadir más rutas según sea necesario

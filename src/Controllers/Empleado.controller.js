@@ -35,7 +35,7 @@ const createEmpleado = async (req, res) => {
 
 const getEmpleadoByTelefono = async (req, res) => {
   const { telefono } = req.params;
-  const empleado = await Empleado.findOne({ where: { telefono } });
+  const empleado = await Empleado.findOne({ where: { telefono },include: 'Empresa'});
   if (!empleado) {
     return res.status(404).json({ message: 'Empleado no encontrado' });
   }
@@ -43,30 +43,30 @@ const getEmpleadoByTelefono = async (req, res) => {
 };
 
 const updateEmpleado = async (req, res) => {
-  const { nombre, empresaId, telefono } = req.body; // Usar empresaId
-  
-  const empleado = await Empleado.findByPk(req.params.id);
-  
-  if(!empleado){
-      return res.status(404).json({message: "Empleado no encontrado"});
+  const { id } = req.params;
+  const { nombre,telefono, activo, primeraInteraccion} = req.body;
+
+  try {
+    let empleado = await Empleado.findOne({ where: { id } });
+
+    if (!empleado) {
+      return res.status(404).json({ message: "Empleado no encontrado" });
+    }
+
+    empleado.nombre = nombre;
+    empleado.activo = activo;
+    empleado.primeraInteraccion = primeraInteraccion;
+    empleado.telefono = telefono;
+
+    empleado = await empleado.save();
+
+    res.json(empleado);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error al actualizar el empleado" });
   }
-
-  // Verificar si la empresa existe
-  const empresa = await Empresa.findByPk(empresaId);
-  if (!empresa) {
-    return res.status(404).json({
-      error: "Empresa no encontrada",
-    });
-  }
-
-  empleado.nombre = nombre;
-  empleado.EmpresaId = empresaId; // Usar EmpresaId
-  empleado.telefono = telefono;
-
-  await empleado.save();
-
-  res.json(empleado);
 };
+module.exports = updateEmpleado;
 
 const deleteEmpleado = async (req, res) => {
   const empleado = await Empleado.findByPk(req.params.id);

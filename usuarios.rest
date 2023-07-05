@@ -3,16 +3,16 @@
 
 
 
-
-POST http://localhost:3001/empleados
+PUT  http://localhost:3001/empleados/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODY0MzI2NTR9.emUnn3lH-AHYjPXe6Ncjg1WwhdPsAKAxSR7n45pFh3I
 
 {
-    "nombre": "Limbik",
-    "telefono": 56965931977,
-    "activo": true,
-    "EmpresaId": 1
+  "nombre": "juan",
+  "telefono": "56972149853",
+  "activo": true,
+  "primeraInteraccion": true,
+  "EmpresaId": "2"
 }
 
 
