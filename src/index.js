@@ -2,8 +2,9 @@ const express = require('express');
 const conexion = require('./database/database.js');
 const EmpleadosRoute = require('./Routes/Empleado.route.js');
 const EmpresaRoute = require("./Routes/Empresa.route.js");
+const ConversacionRoute = require("./Routes/Conversacion.route.js");
 const {router, verifyToken} = require('./middlewares/auth.js'); // Asegúrate de actualizar esta ruta con la ruta correcta a tu archivo de autenticación
-require('./Controllers/associatios.js');
+require('./models/associatios.js');
 
 
 const app = express();
@@ -12,7 +13,7 @@ const app = express();
 (async () => {
     try {
         await conexion.authenticate();
-        await conexion.sync({alter: true});
+        await conexion.sync({force:false});
         console.log("Conectados a la base de datos");
     } catch (error) {
         throw new Error(error);
@@ -24,12 +25,12 @@ const app = express();
 app.use(express.json());
 
 //routes
-app.use('/a', router);
 // Midleware para ver si las peticiones tienen autorizacion
 app.use(verifyToken);
 
 app.use('/empleados', EmpleadosRoute)
 app.use('/empresas', EmpresaRoute)
+app.use('/conversacion', ConversacionRoute);
 
 //rama dos
 

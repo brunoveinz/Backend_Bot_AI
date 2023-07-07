@@ -12,14 +12,15 @@ const getEmpresaById = async (req, res) => {
 
 //Arreglar controladores empresa
 const createEmpresa = async (req, res) => {
-    const {nombre, cantidadEmpleados,rut,activo} = req.body;
+    const {nombre, cantidadEmpleados,rut,estado_suscripcion,prompt,} = req.body;
 
     try {
         const empresa = await Empresa.create({
             nombre: nombre,
             cantdadEmpleados: cantidadEmpleados,
             rut: rut,
-            activo: activo
+            estado_suscripcion: estado_suscripcion,
+            prompt: prompt,
         })
         res.json(`empresa creada exitosamente ${empresa}`)
         

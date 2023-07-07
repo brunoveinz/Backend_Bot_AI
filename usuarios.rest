@@ -2,26 +2,45 @@
 
 
 
-
-PUT  http://localhost:3001/empleados/1
+POST  http://localhost:3001/conversacion/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODY0MzI2NTR9.emUnn3lH-AHYjPXe6Ncjg1WwhdPsAKAxSR7n45pFh3I
 
 {
-  "nombre": "juan",
-  "telefono": "56972149853",
-  "activo": true,
-  "primeraInteraccion": true,
-  "EmpresaId": "2"
+  "titulo": "Quien fue arturo prat",
+  "categoria": "historia de chile",
+  "total_tokens": 300,
+  "EmpleadoId": "1"
 }
 
 
-
-# POST http://localhost:3001/a/tokeniz/ 
+# POST  http://localhost:3001/empleados/
 # Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODY0MzI2NTR9.emUnn3lH-AHYjPXe6Ncjg1WwhdPsAKAxSR7n45pFh3I
 
 # {
-#     "nombre": "bruno",
-#     "password": "123"
+#   "nombre": "Rodrigo Catalan",
+#   "telefono": 56959563363,
+#   "apellidos": "Catalan",
+#   "rut": "1111111",
+#   "cargo": "Creador de Videos",
+#   "profesion": "Creador de Videos",
+#   "edad": 20,
+#   "empresaId": 1
 # }
+
+
+# // metodo correcto para crear una empresa
+# POST  http://localhost:3001/empresas/
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODY0MzI2NTR9.emUnn3lH-AHYjPXe6Ncjg1WwhdPsAKAxSR7n45pFh3I
+
+# {
+#   "nombre": "LIMBIK TECH",
+#   "cantidad_empleados": 0,
+#   "estado_suscripcion": true,
+#   "rut": "1111111",
+#   "prompt": "Eres un asistente virtual para ayudar a los empleados de le empresa Limbik Tech"
+# }
+
 

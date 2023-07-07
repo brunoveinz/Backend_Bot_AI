@@ -13,9 +13,18 @@ Empresa.init({
   rut:{
     type: DataTypes.INTEGER,
   },
-  activo: {
+  estado_suscripcion: {
     type: DataTypes.BOOLEAN,
     defaultValue: true
+  },
+  prompt: {
+    type: DataTypes.TEXT
+  },
+  tokens_totales:{
+    type: DataTypes.INTEGER,
+  },
+  conversaciones_iniciadas:{
+    type: DataTypes.INTEGER,
   }
 }, {
   sequelize,

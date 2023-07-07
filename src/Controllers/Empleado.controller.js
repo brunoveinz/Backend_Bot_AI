@@ -12,24 +12,24 @@ const getEmpleadoById = async (req, res) => {
 };
 
 const createEmpleado = async (req, res) => {
-    const {nombre, EmpresaId, telefono,activo} = req.body; // Utiliza empresaId en lugar de empresa
+    const {nombre, rut, cargo, edad, profesion, empresaId, telefono,} = req.body; // Utiliza empresaId en lugar de empresa
 
     //validaciones
-    if (!nombre || !EmpresaId || !telefono || !activo) {
+    if (!nombre || !empresaId || !telefono) {
       return res.status(400).json({
-        error: "uno o más campos vacíos",
+        error: "campos nombre, empresaId, telefono falta completar", nombre, telefono, empresaId
       });
     }
 
     // Verificar si la empresa existe
-    const empresa = await Empresa.findByPk(EmpresaId);
+    const empresa = await Empresa.findByPk(empresaId);
     if (!empresa) {
       return res.status(404).json({
         error: "Empresa no encontrada",
       });
     }
 
-    const empleado = await Empleado.create({nombre, EmpresaId: EmpresaId, telefono}); // Usar EmpresaId
+    const empleado = await Empleado.create({nombre,telefono,rut,cargo,edad,profesion, EmpresaId: empresaId}); // Usar EmpresaId
     res.json(empleado);
 };
 
