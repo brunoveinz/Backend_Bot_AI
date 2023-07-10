@@ -15,7 +15,7 @@ const app = express();
 (async () => {
     try {
         await conexion.authenticate();
-        await conexion.sync({force: true});
+        await conexion.sync({force: false, alter: true});
         console.log("Conectados a la base de datos");
     } catch (error) {
         console.log("conexion a la base de datos fallida")
