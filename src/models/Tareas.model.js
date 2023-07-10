@@ -4,14 +4,18 @@ const sequelize = require('../database/database.js');
 class Tarea extends Model {}
 
 Tarea.init({
-  nombre: {
-    type: DataTypes.STRING,
-  },
-  hora_recordar: {
+  hora: {
     type: DataTypes.TIME
   },
-  nota_recordatorio:{
+  nota:{
     type: DataTypes.STRING,
+  },
+  dia:{
+    type: DataTypes.DATEONLY
+  },
+  estado:{
+    type: DataTypes.BOOLEAN,
+    defaultValue: true
   }
 }
  ,{
