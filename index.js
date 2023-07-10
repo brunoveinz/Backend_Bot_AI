@@ -32,7 +32,7 @@ app.use(express.json());
 //routes
 // Midleware para ver si las peticiones tienen autorizacion
 app.use(verifyToken); 
-app.use('/', router) 
+app.use('/app/', router) 
 
 
 
