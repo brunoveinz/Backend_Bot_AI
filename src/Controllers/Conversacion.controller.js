@@ -1,6 +1,6 @@
-const Conversacion = require("../models/Conversacion.model")
+import Conversacion from "../models/Conversacion.model.js"
 
-const crearConversacion = async (req, res) => {
+export const crearConversacion = async (req, res) => {
     const {titulo, categoria, total_tokens, EmpleadoId} = req.body;
 
     try {
@@ -18,4 +18,3 @@ const crearConversacion = async (req, res) => {
     }
 };
 
-module.exports = {crearConversacion}

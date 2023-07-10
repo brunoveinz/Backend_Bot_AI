@@ -1,4 +1,4 @@
-const authenticate = (req, res, next) => {
+export const authenticate = (req, res, next) => {
     const authHeader = req.header('Authorization');
     if (!authHeader) return res.status(401).send({ error: 'Access Denied' });
 

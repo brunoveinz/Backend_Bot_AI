@@ -1,17 +1,16 @@
-const Empresa = require("../models/Empresa.model.js");
-
-const getEmpresa = async (req,res) => {
+import Empresa from '../models/Empresa.model.js'
+export const getEmpresa = async (req,res) => {
     const empresas = await Empresa.findAll();
     res.send(empresas)
 };
 
-const getEmpresaById = async (req, res) => {
+export const getEmpresaById = async (req, res) => {
     const empresa = await Empresa.findById(req.params.id);
     res.send(empresa);
 };
 
 //Arreglar controladores empresa
-const createEmpresa = async (req, res) => {
+export const createEmpresa = async (req, res) => {
     const {nombre, cantidadEmpleados,rut,estado_suscripcion,prompt,} = req.body;
 
     try {
@@ -30,7 +29,7 @@ const createEmpresa = async (req, res) => {
     }
 };
 
-const updateEmpresa = async (req, res) => {
+export const updateEmpresa = async (req, res) => {
     const { nombre, cantidadEmpleados, rut } = req.body;
     
     const empresa = await Empresa.findByPk(req.params.id);
@@ -48,7 +47,7 @@ const updateEmpresa = async (req, res) => {
     res.json(empresa);
 };
 
-const deleteEmpresa = async (req, res) => {
+export const deleteEmpresa = async (req, res) => {
     const empresa = await Empresa.findByPk(req.params.id);
     
     if(!empresa){
@@ -60,10 +59,3 @@ const deleteEmpresa = async (req, res) => {
     res.json({message: "Empresa eliminada"});
 };
 
-module.exports = {
-    getEmpresa,
-    getEmpresaById,
-    createEmpresa,
-    deleteEmpresa,
-    updateEmpresa,
-};

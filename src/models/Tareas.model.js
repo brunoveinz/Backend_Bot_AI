@@ -1,5 +1,6 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = require('../database/database.js');
+import { Sequelize, DataTypes, Model } from 'sequelize';
+import {conexion} from '../database/database.js'
+
 
 class Tarea extends Model {}
 
@@ -19,7 +20,8 @@ Tarea.init({
   }
 }
  ,{
-  sequelize,
+  sequelize: conexion,
   modelName: 'Tarea'
 });
-module.exports = Tarea;
+
+export default Tarea;

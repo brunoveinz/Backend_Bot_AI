@@ -1,5 +1,5 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = require('../database/database.js');
+import { Sequelize, DataTypes, Model } from 'sequelize';
+import {conexion} from '../database/database.js'
 
 class Empresa extends Model {}
 
@@ -27,8 +27,9 @@ Empresa.init({
     type: DataTypes.INTEGER,
   }
 }, {
-  sequelize,
+  sequelize:     conexion,
   modelName: 'Empresa'
 });
-module.exports = Empresa;
+
+export default Empresa;
 

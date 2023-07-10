@@ -1,7 +1,7 @@
-const Tarea = require("../models/Tareas.model")
-const { Op, literal, fn, col } = require('sequelize');
+import Tarea from "../models/Tareas.model.js"
+import { Op, literal, fn, col } from 'sequelize';
 
-const crearTarea = async (req, res) => {
+export const crearTarea = async (req, res) => {
     const {hora, dia, nota, EmpleadoId} = req.body;
 
     try {
@@ -20,7 +20,7 @@ const crearTarea = async (req, res) => {
 };
 
 
-const getTarea = async (req, res) => {
+export const getTarea = async (req, res) => {
     try {
       const tareas = await Tarea.findAll({
         where: { EmpleadoId: req.params.id },
@@ -33,7 +33,7 @@ const getTarea = async (req, res) => {
   };
 
 // FUNCION PARA PEDIR TAREAS POR ESTADO
-const getTareaByEstado = async (req, res) => {
+export const getTareaByEstado = async (req, res) => {
     try {
       const tareas = await Tarea.findAll({where:{estado: req.params.estado}, include: 'Empleado'
       });
@@ -44,7 +44,7 @@ const getTareaByEstado = async (req, res) => {
     }
 };
 
-const actualizarEstadoTarea = async (req, res) => {
+export const actualizarEstadoTarea = async (req, res) => {
     const { id } = req.params;
     const { hora, nota, dia, EmpleadoId,estado} = req.body;
   
@@ -72,7 +72,7 @@ const actualizarEstadoTarea = async (req, res) => {
 
 // crear funcion para obtener tareas del dia segun id
 // funcion devuelve todas las tareas del dia el unico parametro que necesita es el id del empleado
-const getTareasDelDiaById = async (req, res) => {
+export const getTareasDelDiaById = async (req, res) => {
   try {
     const today = new Date().toISOString().split('T')[0];
 
@@ -84,6 +84,3 @@ const getTareasDelDiaById = async (req, res) => {
     res.status(500).send('Error al obtener las tareas');
   }
 };
-
-
-module.exports = {crearTarea, getTarea, getTareaByEstado, getTareaByEstado, actualizarEstadoTarea, getTareasDelDiaById}

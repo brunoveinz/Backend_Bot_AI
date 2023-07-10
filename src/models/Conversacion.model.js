@@ -1,5 +1,6 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = require('../database/database');
+import { Sequelize, DataTypes, Model } from 'sequelize';
+import {conexion} from '../database/database.js'
+
 
 class Conversacion extends Model {}
 
@@ -15,7 +16,7 @@ Conversacion.init({
   }
 }
  ,{
-  sequelize,
+  sequelize: conexion,
   modelName: 'Conversacion'
 });
-module.exports = Conversacion;
+export default Conversacion;

@@ -1,10 +1,12 @@
-const jwt = require('jsonwebtoken');
-const express = require('express');
-require('dotenv').config();
+import jwt from 'jsonwebtoken';
+import express from 'express';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const router = express.Router();
 
-function generateToken(payload) {
+export function generateToken(payload) {
     return jwt.sign(payload, process.env.APIKEY);
 }
 
@@ -23,7 +25,7 @@ router.post('/tokeniz', (req, res) => {
 });
 
 
-function verifyToken(req, res, next) {
+export function verifyToken(req, res, next) {
     const bearerHeader = req.headers['authorization'];
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
@@ -42,4 +44,4 @@ function verifyToken(req, res, next) {
 }
 
 
-module.exports = {router, verifyToken};
+export default verifyToken;
