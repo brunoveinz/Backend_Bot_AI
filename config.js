@@ -6,5 +6,5 @@ export const DB_NAME = process.env.DB_NAME || 'sistema';
 export const DB_PORT = process.env.DB_PORT ||  '3306';
 
 // PUERTO DE LA APLICACION
-export const PORT = process.env.PORT || '3000';
+export const PORT = process.env.PORT || '3001';
 
