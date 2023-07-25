@@ -4,6 +4,7 @@ import router from './src/Routes/routes.js';
 import {verifyToken} from './src/middlewares/auth.js'; // Asegúrate de actualizar esta ruta con la ruta correcta a tu archivo de autenticación
 import { PORT } from './config.js';
 import { Empleado, Empresa, Conversaciones, Tareas } from './src/models/associatios.js';
+import cors from 'cors'
 
 import dotenv from 'dotenv';
 
