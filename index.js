@@ -24,6 +24,7 @@ const app = express();
 })();
 
 //Midlewaree
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
