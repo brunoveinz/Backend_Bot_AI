@@ -5,7 +5,6 @@ import {verifyToken} from './src/middlewares/auth.js'; // Asegúrate de actualiz
 import { PORT } from './config.js';
 import { Empleado, Empresa, Conversaciones, Tareas } from './src/models/associatios.js';
 import cors from 'cors'
-
 import dotenv from 'dotenv';
 
 dotenv.config();
