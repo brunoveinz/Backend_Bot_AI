@@ -1,5 +1,5 @@
 import { getEmpresa, getEmpresaById, createEmpresa} from '../Controllers/Empresa.controller.js';
-import { updateEmpleado,getEmpleados,getEmpleadoById,createEmpleado,getEmpleadoByTelefono} from '../Controllers/Empleado.controller.js'
+import { updateEmpleado,getEmpleados,getEmpleadoById,createEmpleado,getEmpleadoByTelefono, deleteEmpleado} from '../Controllers/Empleado.controller.js'
 import {crearConversacion} from '../Controllers/Conversacion.controller.js';
 import express from 'express';
 import {crearTarea, getTarea, getTareaByEstado, actualizarEstadoTarea, getTareasDelDiaById}from "../Controllers/Tareas.controller.js";
@@ -17,6 +17,7 @@ router.get('/empleado/:id', getEmpleadoById);
 router.post('/empleado/', createEmpleado);
 router.get('/empleado/telefono/:telefono',getEmpleadoByTelefono);
 router.put('/empleado/:id', updateEmpleado);
+router.delete('/empleado/:id', deleteEmpleado);
 
 //rutas de conversaciones
 router.post('/conversaciones/', crearConversacion);
