@@ -1,4 +1,4 @@
-import { getEmpresa, getEmpresaById, createEmpresa} from '../Controllers/Empresa.controller.js';
+import { deleteEmpresa,getEmpresa, getEmpresaById, createEmpresa, updateEmpresa} from '../Controllers/Empresa.controller.js';
 import { updateEmpleado,getEmpleados,getEmpleadoById,createEmpleado,getEmpleadoByTelefono, deleteEmpleado} from '../Controllers/Empleado.controller.js'
 import {crearConversacion} from '../Controllers/Conversacion.controller.js';
 import express from 'express';
@@ -9,7 +9,9 @@ const router = express.Router();
 // rutas de empresa
 router.get('/empresa/',getEmpresa);
 router.get('/empresa/:id',getEmpresaById);
-router.post('/empresa/',createEmpresa);
+router.post('/empresa/', createEmpresa);
+router.delete('/empresa/:id', deleteEmpresa);
+router.put('/empresa/:id', updateEmpresa);
 
 // rutas de empleado
 router.get('/empleado/', getEmpleados);
