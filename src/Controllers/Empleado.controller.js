@@ -44,7 +44,7 @@ export const getEmpleadoByTelefono = async (req, res) => {
 
 export const updateEmpleado = async (req, res) => {
   const { id } = req.params;
-  const { nombre,telefono, activo, primeraInteraccion} = req.body;
+  const { nombre, rut, cargo, edad, profesion, telefono} = req.body;
 
   try {
     let empleado = await Empleado.findOne({ where: { id } });
@@ -54,13 +54,17 @@ export const updateEmpleado = async (req, res) => {
     }
 
     empleado.nombre = nombre;
+    empleado.rut = rut;
+    empleado.cargo = cargo;
+    empleado.edad = edad;
+    empleado.profesion = profesion;
     empleado.activo = activo;
     empleado.primeraInteraccion = primeraInteraccion;
     empleado.telefono = telefono;
 
     empleado = await empleado.save();
 
-    res.json(empleado);
+    res.json(`empleado actualizado : ${empleado}`);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error al actualizar el empleado" });
