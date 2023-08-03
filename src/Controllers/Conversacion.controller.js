@@ -2,7 +2,7 @@ import Conversacion from "../models/Conversacion.model.js"
 
 export const crearConversacion = async (req, res) => {
     const {titulo, categoria, total_tokens, EmpleadoId} = req.body;
-
+    
     try {
         const conversacion = await Conversacion.create({
             titulo: titulo,

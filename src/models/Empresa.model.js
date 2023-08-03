@@ -27,7 +27,7 @@ Empresa.init({
     type: DataTypes.INTEGER,
   }
 }, {
-  sequelize:     conexion,
+  sequelize:  conexion,
   modelName: 'Empresa'
 });
 

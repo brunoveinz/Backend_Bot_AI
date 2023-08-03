@@ -44,7 +44,7 @@ export const getEmpleadoByTelefono = async (req, res) => {
 
 export const updateEmpleado = async (req, res) => {
   const { id } = req.params;
-  const { nombre, rut, cargo, edad, profesion, telefono } = req.body;
+  const { nombre, rut, cargo, edad, profesion, telefono , primeraInteraccion} = req.body;
 
   try {
     let empleado = await Empleado.findOne({ where: { id } });
@@ -59,6 +59,7 @@ export const updateEmpleado = async (req, res) => {
     empleado.edad = edad;
     empleado.profesion = profesion;
     empleado.telefono = telefono;
+    empleado.primeraInteraccion = primeraInteraccion;
 
     empleado = await empleado.save();
 
